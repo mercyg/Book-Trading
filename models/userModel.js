@@ -14,16 +14,17 @@ var userSchema = new Schema({
     },
     name:{
          type: String,
-       // required: true
+        required: true
     },
     city:{
-        type: String,
+        type: String
        // required: true
     },
     state:{
-        type: String,
+        type: String
         //required: true
     },
+    address: Number,
     books: [{
         type: Schema.Types.ObjectId, 
         ref: "Book"
