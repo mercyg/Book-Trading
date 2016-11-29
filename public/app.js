@@ -5,8 +5,13 @@ app.config(function($routeProvider){
         .when("/", {
             templateUrl: "components/home/home.html"
     })
-       .when("/book",{
+       .when("/books",{
             templateUrl: "components/books/books.html",
             controller: "BookController"
     })
+       .when("/addbook",{
+            templateUrl: "components/books/addbook.html",
+            controller: "AddbookController"
+    })
+      
 })

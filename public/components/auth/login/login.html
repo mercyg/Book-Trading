@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row" text align="center">
+        <div class="col-xs-12 col-sm-md-4">
+            <h1>Login</h1>
+        </div>
+           <div classs="col-xs-12 col-sm-push-3 col-sm-2" >
+            <form>
+            
+                <div class="form-inline">
+                    <label for="label">Username:</label>
+                    <input type="text" id="username" class="form-control" ng-model="user.username">
+                </div>
+        
+               <br>
+                <div class="form-inline">
+                    <label for="label">Password:</label>
+                    <input type="password" id="password" class="form-control" ng-model="user.password">
+                </div>
+                <br>
+                <button class="center-block btn btn-primary btn-lg" ng-click="login(user)">Login</button>
+            </form>
+                </div>
+        
+    </div>
+</div>

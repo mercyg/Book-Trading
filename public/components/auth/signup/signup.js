@@ -9,9 +9,9 @@ app.controller("SignupController", ["$scope","$location","UserService", function
         }else{
             UserService.signup(user). then(function(response){
                 $location.path("/login");
-            }), function(response){
+            }, function(response){
                 alert("there was a problem" + response.data.message)
-            }
+            })
         }
     }
     
