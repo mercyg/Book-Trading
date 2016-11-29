@@ -1,9 +1,18 @@
-
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-push-2 col-sm-6">
+         <button type="button" class="btn btn-warning" >My Request  ( {{ add}}) </button>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="#request"> <button type="button" class="btn btn-primary">Trading Request for Me  (0 Trade)</button></a>
+           </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <div class="panel panel-default" ng-repeat="book in books">
+        <div class="col-xs-12 col-sm-4" ng-repeat="book in books track by $index">
+            <div class="panel panel-default" >
                 <div class="panel-heading">Title: {{book.name}}</div>
                 <div class="panel-body">
                     <img ng-src="{{book.image}}"> 
@@ -11,9 +20,12 @@
                     <p>Requested: {{book.requestedBy}}</p>
                     <p>Author: {{book.author}}</p>
                     <p>Owner of the Book: {{book.owner.username}}</p>
-
+                
                 </div>
-
+                <span>
+                <button type="button" class="btn btn-info" ng-click="requestTrade(book,$index)">Trade</button>
+                </span>
+                <br>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
            <button type="button" class="btn btn-warning">My Request  (0 Request) </button>
         </div>
           <div class="col-xs-12 col-sm-6">
-           <button type="button" class="btn btn-primary">Trading Request for Me  (0 Trade)</button>
+           <button type="button" class="btn btn-primary" ng-click="unapprovedRequest(book)">Trading Request for Me  (0 Trade)</button>
             <button type="button" class="btn btn-success" ng-click="addbook = !addbook">Add Book</button>
         </div>
         </div>
@@ -42,10 +42,10 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" ng-show="!trade">
     <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <div class="panel panel-default" ng-repeat="book in myBooks">
+        <div class="col-xs-12 col-sm-4" ng-repeat="book in myBooks track by $index">
+            <div class="panel panel-default">
                 <div class="panel-heading">Title: {{book.name}}</div>
                 <div class="panel-body">
                     <img ng-src="{{book.image}}"> 
@@ -54,6 +54,27 @@
                     <p>Author: {{book.author}}</p>
                     <p>Owner of the Book: {{book.owner.username}}</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <div class="container" ng-show="trade">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4" ng-repeat="rbook in requestbook track by $index">
+            <div class="panel panel-default" >
+                <div class="panel-heading">Title: {{rbook.name}}</div>
+                <div class="panel-body">
+                    <img ng-src="{{rbook.image}}"> 
+                    <p>Description of the book:{{rbook.description}}</p>
+                    <p>Requested: {{rbook.requestedBy}}</p>
+                    <p>Author: {{rbook.author}}</p>
+                    <p>Owner of the Book: {{rbook.owner.username}}</p>
+                </div>
+                <span>
+                </span>
+                <br>
             </div>
         </div>
     </div>

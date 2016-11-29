@@ -30,24 +30,52 @@ app.service("BookService", ["$http", function ($http) {
          })
     }
     
+    this.requestTrade = function(item){
+        return $http.put("/api/books/traderequest/request/" + item._id, item)
+            .then(function(response){
+                return response
+        })
+    }
+    
+    this. unapprovedRequest = function(item){
+        return $http.get("/api/books/" + item._id)
+            .then(function(response){
+              return response.data
+              //console.log(response.data);
+        })
+    }
+    
     
 }]);
 
 app.controller("BookController", ["$scope", "BookService", function ($scope, BookService) {
     $scope.books = [];
     $scope.addbook = false;
+     $scope.add = 0;
     (function getBooks() {
         BookService.getBooks()
             .then(function (books) {
             //            console.log(books);
             $scope.books = books;
+            
         });
     })();
 
+    $scope.requestTrade = function(item, index){
+      
+        BookService.requestTrade(item)
+            .then(function(response){
+                if(response.data === "The request has been created sucessfully created"){
+                    $scope.add++;
+                }
+        })
+    }
+    
 }]);
 
 
 app.controller("AddbookController", ["$scope", "BookService", "$location", function ($scope, BookService, $location) {
+    $scope.trade = false;
     BookService.getBooks()
         .then(function (books) {
             $scope.books = books
@@ -56,8 +84,7 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
         BookService.addBook(input)
             .then(function (response) {
                     $scope.books.push(response);
-                    //                 $location.path("/books")
-
+                    //  $location.path("/books")
         })
     };
     
@@ -68,6 +95,16 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
         });
     };
     
+    
+    $scope.unapprovedRequest = function(item){
+        $scope.trade = true;
+        BookService.unapprovedRequest(item)
+            .then(function(requestbook){
+               // console.log(requestbook)
+                $scope.requestbook = requestbook;
+        })
+    }
+    
     function init(){
        $scope.getUserBooks()
     }
@@ -76,3 +113,7 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
     
 
 }])
+
+
+
+

@@ -9,7 +9,10 @@ bookRoute.route("/")
     var query = {};
     if (req.query.owner === "me") {
         query.owner = req.user._id;
-    }
+    } else if(req.query.requestedBy !== null){
+        
+    }  
+    
     //console.log("id : " + req.user.username)
         Book.find(query)
             .populate("owner", "username -_id")
@@ -45,6 +48,9 @@ bookRoute.route("/")
             
         })
 })
+
+
+
 
 bookRoute.route("/:bookId")
     .get(function(req, res){
@@ -86,19 +92,23 @@ bookRoute.route("/traderequest/request/:bookId")
                 res.send("The book has already been requested")
             }else{
                 
-                book.requestedBy = req.body.owner;
+                book.requestedBy = req.user.username;
+               // book.markModified("requestedBy")
                 book.save(function(err){
                     if(err){
                         res.status(500).send(err);
                     }else{
                         res.send("The request has been created sucessfully created")
-                
+                    
                     }
                 })
             }
         })
         
 })
+
+
+
     
 bookRoute.route("/traderequest/unapproved/:bookId")
     .get(function(req, res){
@@ -120,8 +130,8 @@ bookRoute.route("/traderequest/accept/:bookId")
             }else{
                 accepttrade.owner = acceptbook.requestdBy;
                 accepttrade.requestApproved =  true;
-                accepttrade.markModified("requestApproved");
-                accepttrade.markModified("owner");
+//                accepttrade.markModified("requestApproved");
+//                accepttrade.markModified("owner");
                 accepttrade.save(function(err){
                     if(err) res.status(500).send(err);
                     res.send("Trade Request approved")
