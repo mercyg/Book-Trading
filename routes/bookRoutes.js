@@ -6,10 +6,14 @@ var Book = require("../models/bookModel");
 
 bookRoute.route("/")
     .get(function(req, res){
+    var query = {};
+    if (req.query.owner === "me") {
+        query.owner = req.user._id;
+    }
     //console.log("id : " + req.user.username)
-        Book.find({})
+        Book.find(query)
             .populate("owner", "username -_id")
-             .exec(function(err, foundeBooks){
+            .exec(function(err, foundeBooks){
                 if(err){
                   res.status(500).send(err);  
                 } else{
@@ -44,7 +48,7 @@ bookRoute.route("/")
 
 bookRoute.route("/:bookId")
     .get(function(req, res){
-        Book.findOne({_id:req.params.bookId, owner: req.user._id}, function(err, book){
+        Book.find({_id:req.params.bookId}, function(err, book){
             if(err) {
                 res.status(500).send(err);
             }else if(!book){
@@ -57,7 +61,7 @@ bookRoute.route("/:bookId")
 })
       .delete(function(req,res){
         Book.findOneAndRemove(
-            {_id: req.params.bookId, creator: req.user._id},function(err, book){
+            {_id: req.params.bookId, owner: req.user._id},function(err, book){
                 if(err){
                     res.status(500).send(err);
                 }else{
@@ -65,6 +69,8 @@ bookRoute.route("/:bookId")
                 }
             })
 })
+
+
   
 
 
