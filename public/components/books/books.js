@@ -114,25 +114,30 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
             });
     };
 
-
+//Scope to get the book that are requested for me
     $scope.unapprovedRequest = function () {
         $scope.trade = true;
         BookService.unapprovedRequest()
             .then(function (requestbook) {
                 // console.log(requestbook)
+            for(var i = 0; i < requestbook.length; i++){
+                requestbook[i].isDecline = false
+            }
                 $scope.requestbook = requestbook;
+            
             })
     }
-
+//Scope to get all my requested book
     $scope.myRequest = function () {
         $scope.traderequest = true
 
         BookService.myRequest()
             .then(function (myrequest) {
+                console.log(myrequest)
                 $scope.myrequest = myrequest;
             })
     }
-
+//Scope to accept my book request
     $scope.acceptRequest = function (book) {
         $scope.myVar = true
         BookService.acceptRequest(book)
@@ -140,10 +145,13 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
                 console.log(response);
             })
     }
-
-    $scope.declineRequest = function(book){
+//Scope to decline my book request
+    $scope.declineRequest = function(book,index){
+          $scope.requestbook[index].isDecline = true;
         BookService.declineRequest(book)
+          
             .then(function(response){
+               
                 console.log(response);
         })
     }

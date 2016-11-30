@@ -4,20 +4,25 @@
             <h1>Signup</h1>  
             
             
-        <form>
-            <div class="form-group">
+        <form name="userForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group" ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}">
                 <label for="name">Name</label>
-                <input type="text" id="name" class="form-control" ng-model="user.name">
+                <input type="text" name="name" class="form-control" ng-model="user.name" required>
+                <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : userForm.username.$invalid && !userForm.username.$pristine}">
                 <label for="username">Username</label>
-                <input type="text" id="username" class="form-control" ng-model="user.username">
+                <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+                <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short</p>
+                <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : userForm.password.$invalid && !userForm.password.$pristine}">
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" ng-model="user.password">
+                <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="4" ng-maxlength="8">
+                <p ng-show="userForm.password.$error.minlength" class="help-block">password has to be greater than 4 letter or digits</p>
+                <p ng-show="userForm.password.$error.maxlength" class="help-block">password is too long</p>
             </div>
 
             <div class="form-group">
@@ -26,18 +31,19 @@
                 <span class="text-danger" ng-show="passwordMessage">{{passwordMessage}}</span>
             </div>
             
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : userForm.city.$invalid && !userForm.city.$pristine && submitted}">
                 <label for="username">City</label>
-                <input type="text" id="city" class="form-control" ng-model="user.city">
+                <input type="text" name="city" class="form-control" ng-model="user.city" required>
+                <p ng-show="userForm.city.$invalid && !userForm.city.$pristine" class="help-block">Your city is required</p>
             </div>
             <div class="form-group">
                 <label for="username">State</label>
-                <input type="text" id="state" class="form-control" ng-model="user.state">
+                <input type="text" id="state" class="form-control"  ng-model="user.state">
             </div>
             
             
             
-            <button class="center-block btn btn-primary btn-lg" ng-click="signup(user)">Signup</button>
+            <button class="center-block btn btn-primary btn-lg" ng-disabled="userForm.$invalid" ng-click="signup(user)" >Signup</button>
         </form>
         </div>
     </div>

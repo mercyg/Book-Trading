@@ -9,8 +9,6 @@
         </div>
         </div>
  </div>
-
- 
 <br>
   
     
@@ -62,7 +60,7 @@
 
 <div class="container" ng-show="trade">
     <div class="row">
-        <div class="col-xs-12 col-sm-4" ng-repeat="rbook in requestbook track by $index">
+        <div class="col-xs-12 col-sm-4" ng-repeat="rbook in requestbook track by $index" ng-show="!rbook.isDecline">
             <div class="panel panel-default">
                 <div class="panel-heading">Title: {{rbook.name}}</div>
                 <div class="panel-body">
@@ -75,7 +73,7 @@
                 <button type="button" class="btn btn-default btn-sm" ng-click="acceptRequest(rbook)">
                     <span class="glyphicon glyphicon-ok"></span> Accept
                 </button>
-                <button type="button" class="btn btn-default btn-sm" ng-click="declineRequest(rbook)">
+                <button type="button" class="btn btn-default btn-sm" ng-click="declineRequest(rbook, $index)" >
                     <span class="glyphicon glyphicon-remove"></span> Decline
                 </button>
                 <span>
@@ -87,15 +85,15 @@
 </div>
  <div class="container" ng-show="traderequest">
     <div class="row">
-        <div class="col-xs-12 col-sm-4" ng-repeat="myrequest in myrequest track by $index">
+        <div class="col-xs-12 col-sm-4" ng-repeat="myrequestBook in myrequest track by $index">
             <div class="panel panel-default" >
-                <div class="panel-heading">Title: {{myrequest.name}}</div>
+                <div class="panel-heading">Title: {{myrequestBook.name}}</div>
                 <div class="panel-body">
-                    <img ng-src="{{myrequest.image}}"> 
-                    <p>Description of the book:{{myrequest.description}}</p>
-                    <p>Requested: {{myrequest.requestedBy}}</p>
-                    <p>Author: {{myrequest.author}}</p>
-                    <p>Owner of the Book: {{myrequest.owner}}</p>
+                    <img ng-src="{{myrequestBook.image}}"> 
+                    <p>Description of the book:{{myrequestBook.description}}</p>
+                    <p>Requested: {{myrequestBook.requestedBy}}</p>
+                    <p>Author: {{myrequestBook.author}}</p>
+                    <p>Owner of the Book: {{myrequestBook.owner}}</p>
                 </div>
                 <span>
                 </span>

@@ -13,6 +13,9 @@ app.config(function($routeProvider){
             templateUrl: "components/books/addbook.html",
             controller: "AddbookController"
     })
+       .when("/setting",{
+            templateUrl: "components/books/"
+    })
      
     
       

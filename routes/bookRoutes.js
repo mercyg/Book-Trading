@@ -100,7 +100,7 @@ bookRoute.route("/traderequest/request/:bookId")
 
 bookRoute.route("/traderequest/unapproved/rbook")
     .get(function(req, res){
-        Book.find({requestedBy: {$ne: null}, owner: req.user._id}, function(err, book){
+        Book.find({requestedBy: {$ne: null}, owner: req.user}, function(err, book){
             if(err){
                 res.status(500).send(err);
             }else if(book.length  > 0 ){
@@ -113,7 +113,7 @@ bookRoute.route("/traderequest/unapproved/rbook")
 
 bookRoute.route("/traderequest/myrequest/rbook")
     .get(function(req, res){
-        Book.find({requestedBy: req.user.username}, function(err, book){
+        Book.find({requestedBy: req.user._id}, function(err, book){
             if(err){
                 res.status(500).send(err);
             }else if(book.length > 0){
@@ -156,6 +156,7 @@ bookRoute.route("/traderequest/decline/:bookId")
             if(err){
                 res.status(500).send(err);
             }else{
+                declinetrade.requestedBy = null;
                 declinetrade.requestApproved = false;
                 declinetrade.markModified("requestApproved");
                 declinetrade.save(function(err){
