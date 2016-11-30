@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-push-2 col-sm-6">
-           <button type="button" class="btn btn-warning">My Request  (0 Request) </button>
+           <button type="button" class="btn btn-warning" ng-click="myRequest()">My Request  (0 Request) </button>
         </div>
           <div class="col-xs-12 col-sm-6">
-           <button type="button" class="btn btn-primary" ng-click="unapprovedRequest(book)">Trading Request for Me  (0 Trade)</button>
+           <button type="button" class="btn btn-primary" ng-click="unapprovedRequest()">Trading Request for Me  (0 Trade)</button>
             <button type="button" class="btn btn-success" ng-click="addbook = !addbook">Add Book</button>
         </div>
         </div>
@@ -60,17 +60,42 @@
 </div>
 
 
- <div class="container" ng-show="trade">
+<div class="container" ng-show="trade">
     <div class="row">
         <div class="col-xs-12 col-sm-4" ng-repeat="rbook in requestbook track by $index">
-            <div class="panel panel-default" >
+            <div class="panel panel-default">
                 <div class="panel-heading">Title: {{rbook.name}}</div>
                 <div class="panel-body">
-                    <img ng-src="{{rbook.image}}"> 
+                    <img ng-src="{{rbook.image}}">
                     <p>Description of the book:{{rbook.description}}</p>
                     <p>Requested: {{rbook.requestedBy}}</p>
                     <p>Author: {{rbook.author}}</p>
-                    <p>Owner of the Book: {{rbook.owner.username}}</p>
+                    <p>Owner of the Book: {{rbook.owner}}</p>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" ng-click="acceptRequest(rbook)">
+                    <span class="glyphicon glyphicon-ok"></span> Accept
+                </button>
+                <button type="button" class="btn btn-default btn-sm" ng-click="declineRequest(rbook)">
+                    <span class="glyphicon glyphicon-remove"></span> Decline
+                </button>
+                <span>
+                </span>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+ <div class="container" ng-show="traderequest">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4" ng-repeat="myrequest in myrequest track by $index">
+            <div class="panel panel-default" >
+                <div class="panel-heading">Title: {{myrequest.name}}</div>
+                <div class="panel-body">
+                    <img ng-src="{{myrequest.image}}"> 
+                    <p>Description of the book:{{myrequest.description}}</p>
+                    <p>Requested: {{myrequest.requestedBy}}</p>
+                    <p>Author: {{myrequest.author}}</p>
+                    <p>Owner of the Book: {{myrequest.owner}}</p>
                 </div>
                 <span>
                 </span>
@@ -79,3 +104,6 @@
         </div>
     </div>
 </div>
+
+
+

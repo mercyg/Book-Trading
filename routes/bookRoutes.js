@@ -49,9 +49,6 @@ bookRoute.route("/")
         })
 })
 
-
-
-
 bookRoute.route("/:bookId")
     .get(function(req, res){
         Book.find({_id:req.params.bookId}, function(err, book){
@@ -76,11 +73,6 @@ bookRoute.route("/:bookId")
             })
 })
 
-
-  
-
-
-
 //when a user request a book they get i can get the user id so that I can know who request the book but do i need the book id? 
 //I think I do need the book id so that the owner of the book could know that the book has been request for a trade. 
 bookRoute.route("/traderequest/request/:bookId")
@@ -92,8 +84,7 @@ bookRoute.route("/traderequest/request/:bookId")
                 res.send("The book has already been requested")
             }else{
                 
-                book.requestedBy = req.user.username;
-               // book.markModified("requestedBy")
+                book.requestedBy = req.user;
                 book.save(function(err){
                     if(err){
                         res.status(500).send(err);
@@ -103,16 +94,13 @@ bookRoute.route("/traderequest/request/:bookId")
                     }
                 })
             }
-        })
-        
+        }) 
 })
 
 
-
-    
-bookRoute.route("/traderequest/unapproved/:bookId")
+bookRoute.route("/traderequest/unapproved/rbook")
     .get(function(req, res){
-        Book.find({_id: req.params.bookId, requestdBy: {$ne: "null"} , owner: req.user._id}, function(err, book){
+        Book.find({requestedBy: {$ne: null}, owner: req.user._id}, function(err, book){
             if(err){
                 res.status(500).send(err);
             }else if(book.length  > 0 ){
@@ -122,19 +110,41 @@ bookRoute.route("/traderequest/unapproved/:bookId")
             }
         })
 })
+
+bookRoute.route("/traderequest/myrequest/rbook")
+    .get(function(req, res){
+        Book.find({requestedBy: req.user.username}, function(err, book){
+            if(err){
+                res.status(500).send(err);
+            }else if(book.length > 0){
+                res.send(book);
+            }else{
+                res.send([]);
+            }
+        })
+})
+
+
+
 bookRoute.route("/traderequest/accept/:bookId")
     .put(function(req, res){
         Book.findById(req.params.bookId, function(err,accepttrade){
             if(err){
                 res.status(500).send(err);
             }else{
-                accepttrade.owner = acceptbook.requestdBy;
-                accepttrade.requestApproved =  true;
-//                accepttrade.markModified("requestApproved");
-//                accepttrade.markModified("owner");
-                accepttrade.save(function(err){
-                    if(err) res.status(500).send(err);
-                    res.send("Trade Request approved")
+                 console.log("Trade request:  " + accepttrade.owner)
+                
+              accepttrade.owner = accepttrade.requestedBy;
+               accepttrade.requestApproved =  true;
+               accepttrade.markModified("requestApproved");
+               accepttrade.markModified("owner");
+               accepttrade.save(function(err){
+                  if(err) {
+                      res.status(500).send(err);
+                  }else{
+                       res.send("Trade Request approved")
+                  }
+                 
                  })
             }
         })
