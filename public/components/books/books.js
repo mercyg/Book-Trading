@@ -64,6 +64,20 @@ app.service("BookService", ["$http", function ($http) {
                 return response.data;
         })
     }
+    
+    this.countRequest = function(){
+        return $http.get("/api/books/traderequest/myrequest/count")
+                    .then(function(response){
+                    return response.data
+        })
+    }
+    
+    this.countTrade = function(){
+        return $http.get("/api/books/traderequest/myrequest/rcount")
+            .then(function(response){
+                return response.data
+        })
+    }
 
 }]);
 
@@ -81,7 +95,6 @@ app.controller("BookController", ["$scope", "BookService", function ($scope, Boo
     })();
 
     $scope.requestTrade = function (item, index) {
-
         BookService.requestTrade(item)
             .then(function (response) {
                 if (response.data === "The request has been created sucessfully created") {
@@ -94,6 +107,7 @@ app.controller("BookController", ["$scope", "BookService", function ($scope, Boo
 
 
 app.controller("AddbookController", ["$scope", "BookService", "$location", function ($scope, BookService, $location) {
+    $scope.ismyrequest = true;
     $scope.trade = false;
     BookService.getBooks()
         .then(function (books) {
@@ -130,7 +144,7 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
 //Scope to get all my requested book
     $scope.myRequest = function () {
         $scope.traderequest = true
-
+        $scope.ismyrequest = false;
         BookService.myRequest()
             .then(function (myrequest) {
                 console.log(myrequest)
@@ -156,8 +170,25 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
         })
     }
     
+    $scope.count = function(){
+         BookService.countRequest()
+            .then(function(response){
+               // console.log(response.);
+                $scope.counts =  response.count;
+         })
+    }
+    
+    $scope.rcount = function(){
+        BookService.countTrade()
+            .then(function(response){
+                $scope.requestme = response.count;
+        })
+    }
+    
     function init() {
-        $scope.getUserBooks()
+        $scope.getUserBooks();
+          $scope.count();
+        $scope.rcount();
     }
 
     init();

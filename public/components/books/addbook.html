@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-push-2 col-sm-6">
-           <button type="button" class="btn btn-warning" ng-click="myRequest()">My Request  (0 Request) </button>
+           <button type="button" class="btn btn-warning" ng-click="myRequest()">My Request  ({{counts}}) </button>
         </div>
           <div class="col-xs-12 col-sm-6">
-           <button type="button" class="btn btn-primary" ng-click="unapprovedRequest()">Trading Request for Me  (0 Trade)</button>
+           <button type="button" class="btn btn-primary" ng-click="unapprovedRequest()">Trading Request for Me  ({{requestme}})</button>
             <button type="button" class="btn btn-success" ng-click="addbook = !addbook">Add Book</button>
         </div>
         </div>
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="container" ng-show="!trade">
+<div class="container" ng-show="!trade && ismyrequest" >
     <div class="row">
         <div class="col-xs-12 col-sm-4" ng-repeat="book in myBooks track by $index">
             <div class="panel panel-default">
@@ -83,7 +83,7 @@
         </div>
     </div>
 </div>
- <div class="container" ng-show="traderequest">
+ <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-4" ng-repeat="myrequestBook in myrequest track by $index">
             <div class="panel panel-default" >
