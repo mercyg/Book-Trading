@@ -18,9 +18,9 @@ The application allows the user to login or to create an account if they don't h
 
 # What Still to come
 ==========================================================================
-1) Apdating the user location setting
-2) Adding a google book API to work with the application so that I could render the book easily
-3) Better error handeling
+1. Apdating the user location setting
+2. Adding a google book API to work with the application so that I could render the book easily
+3. Better error handeling
 
 # Tools Used
 ============================================================================
@@ -29,4 +29,4 @@ The application allows the user to login or to create an account if they don't h
     * Node.js
     * Express
     * MongoDB/Mongoose
-     *  AngularJs
+    * AngularJs
