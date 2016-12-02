@@ -1,5 +1,5 @@
 module.exports = {
-    database: "mongodb://localhost/trade",
+    database: process.env.MONGODB_URI || "mongodb://localhost/trade",
     
     secret: "rubber baby buggy bumpers"
 }
