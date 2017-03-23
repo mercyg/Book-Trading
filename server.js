@@ -8,7 +8,7 @@ var config = require("./config");
 var logger = require("morgan");
 
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json())
 
