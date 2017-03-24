@@ -3,8 +3,8 @@ img{
     height: 170px;
 }
 body {
-        font-family: 'Tangerine', serif;
-        font-size: 58px;
+        font-family: 'Nova Oval', cursive;
+        font-size: 28px;
     }
 .title{
     letter-spacing: 5px;
@@ -15,7 +15,7 @@ body {
    color: grey;
 }
 .navbar-brand{
-  font-size: 69px;
+  font-size: 49px;
 }
 
 /*.home{
