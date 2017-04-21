@@ -3,8 +3,8 @@ img{
     height: 170px;
 }
 body {
-        font-family: 'Nova Oval', cursive;
-        font-size: 28px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 22px;
     }
 .title{
     letter-spacing: 5px;
@@ -15,26 +15,45 @@ body {
    color: grey;
 }
 .navbar-brand{
-  font-size: 49px;
+  font-size: 39px;
+}
+.navbar.transparent.navbar-inverse{
+  background: rgba(0,0,0,0.1)
+}
+.front{
+  margin-top: 345px;
+  color: white;
+  font-size: 52px;
+}
+.intro{
+  color: #333333;
+  margin-left: 330px;
+}
+hr{
+  border: 1px solid red
+}
+.intro1{
+  color: red;
+  margin-left: 304px;
 }
 
-/*.home{
-  background: url(https://sweetpauladee.files.wordpress.com/2015/04/library_books1.jpg);
-  background-repeat: no-repeat;
- background-size: 100%;
-}*/
 .wide {
   width:100%;
   height:100%;
   margin-top:-21px;
   /*height:calc(100% - 1px);*/
-  background-image:url('https://sweetpauladee.files.wordpress.com/2015/04/library_books1.jpg');
+  background-image:url('./image/book1.jpg');
   background-size:cover;
   height:700px;
 }
 .wide img {
   width:100%;
 }
+.section2{
+  height: 500px;
+  background-color: #BAA378
+}
+
 .logo {
   color:#fff;
   font-weight:800;
@@ -43,9 +62,8 @@ body {
   text-align:center;
 }
 .title{
-  margin-top:245px;
+  margin-bottom: 10px;
 }
-
 
 #hey{
     color: burlywood

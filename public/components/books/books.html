@@ -17,12 +17,10 @@
             <div class="panel panel-default" >
                 <div class="panel-heading">Title: {{book.name}}</div>
                 <div class="panel-body">
-                    <img ng-src="{{book.image}}"> 
-<!--                    <p>Description of the book:{{book.description}}</p>-->
+                    <img ng-src="{{book.image}}">
                     <p>Requested: {{book.requestedBy}}</p>
                     <p>Author: {{book.author}}</p>
                     <p>Owner of the Book: {{book.owner.username}}</p>
-                
                 </div>
                 <span>
                 <button type="button" class="btn btn-info" ng-click="requestTrade(book,$index)">Trade</button>
