@@ -61,7 +61,9 @@ hr{
 .title{
   margin-bottom: 10px;
 }
-
+.title1{
+    margin-bottom: 50px;
+}
 #hey{
     color: burlywood
 }
@@ -73,4 +75,7 @@ hr{
 }
 .section1{
    padding: 100px;
+}
+.service-box{
+  margin: 20px;
 }
