@@ -88,7 +88,6 @@ app.controller("BookController", ["$scope", "BookService", function ($scope, Boo
     (function getBooks() {
         BookService.getBooks()
             .then(function (books) {
-                //            console.log(books);
                 $scope.books = books;
 
             });
@@ -133,7 +132,6 @@ app.controller("AddbookController", ["$scope", "BookService", "$location", funct
         $scope.trade = true;
         BookService.unapprovedRequest()
             .then(function (requestbook) {
-                // console.log(requestbook)
             for(var i = 0; i < requestbook.length; i++){
                 requestbook[i].isDecline = false
             }

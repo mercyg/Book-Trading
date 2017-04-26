@@ -79,3 +79,35 @@ hr{
 .service-box{
   margin: 20px;
 }
+.container-fluid{
+  padding-right: 0;
+  padding-left: 0; 
+}
+img{
+  width: 600px;
+  margin: auto;
+  display: block;
+  height: auto;
+  /*overflow: hidden;*/
+  /*position: absolute;*/
+}
+
+.no-padding{
+    margin:0;
+    padding:0;
+    position: relative;
+  
+}
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img{
+  height: 300px;
+}
+.section3{
+   background-color: grey;
+   height: 250px;
+}
+.sign-up, .contact , .call{
+  margin-top: 60px;
+}
+#btn{
+  margin-top:40px;
+}
