@@ -46,7 +46,7 @@ hr{
   /*height:calc(100% - 1px);*/
   background-image:url('./image/book2.jpg');
   background-size:cover;
-  height:700px;
+  height:800px;
 }
 .wide img {
   width:100%;
