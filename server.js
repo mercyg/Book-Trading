@@ -24,9 +24,9 @@ app.use("/api", expressJwt({secret: config.secret}));
 
 app.use("/api/books", require("./routes/bookRoutes"));
 
-app.use("/auth", require("./routes/authRoutes"))
+app.use("/auth", require("./routes/authRoutes"));
 
-
+app.use("/allbooks", require("./routes/allbooksRoutes"));
 
 app.listen(port, function(){
     console.log("Server is listening on port " + port);

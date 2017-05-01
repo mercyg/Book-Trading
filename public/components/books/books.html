@@ -10,23 +10,23 @@
     </div>
 </div>
 -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-4" ng-repeat="book in books track by $index">
-            <div class="panel panel-default" >
-                <div class="panel-heading">Title: {{book.name}}</div>
+ 
+<div class="container mainpage">
+    <div class="row" >
+        <div class="col-md-4" ng-repeat="book in books track by $index">
+            <div class="panel panel-default">
+                <!--<div class="panel-heading">Title: {{book.name}}</div>-->
                 <div class="panel-body">
-                    <img ng-src="{{book.image}}">
-                    <p>Requested: {{book.requestedBy}}</p>
-                    <p>Author: {{book.author}}</p>
+                    <img ng-src="{{book.image}}" class="img-responsive center-block"s>
+                 <br>   
+                <br>
+               <p class="bookname"> {{book.name}}</p>
+                <br>
+                 <button type="button" class="btn btn-info" ng-click="requestTrade(book,$index)">Trade</button>
+            </div>
+            </div>
                     <p>Owner of the Book: {{book.owner.username}}</p>
                 </div>
                 <span>
-                <button type="button" class="btn btn-info" ng-click="requestTrade(book,$index)">Trade</button>
                 </span>
-                <br>
-            </div>
-        </div>
-    </div>
 </div>

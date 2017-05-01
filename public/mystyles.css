@@ -83,7 +83,7 @@ hr{
   padding-right: 0;
   padding-left: 0; 
 }
-img{
+.booksimg{
   width: 600px;
   margin: auto;
   display: block;
@@ -111,4 +111,16 @@ img{
 #btn{
   margin-top:40px;
 
+}
+.panel-height{
+   height: 100px;
+}
+.mainpage{
+  margin-top: 70px;
+}
+ .bookname{
+  margin-left: 60px;
+}
+.btn-info{
+  margin-left:90px;
 }
