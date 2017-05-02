@@ -44,13 +44,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-4" ng-repeat="book in myBooks track by $index">
             <div class="panel panel-default">
-                <div class="panel-heading">Title: {{book.name}}</div>
                 <div class="panel-body">
-                    <img ng-src="{{book.image}}"> 
-                    <p>Description of the book:{{book.description}}</p>
-                    <p>Requested: {{book.requestedBy}}</p>
-                    <p>Author: {{book.author}}</p>
-                    <p>Owner of the Book: {{book.owner.username}}</p>
+                    <img ng-src="{{book.image}}" class="img-responsive center-block"> 
+                    <br>
+                    <h3>Title: {{book.name}}</h3>
                 </div>
             </div>
         </div>

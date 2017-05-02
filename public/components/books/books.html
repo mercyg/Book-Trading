@@ -17,15 +17,16 @@
             <div class="panel panel-default">
                 <!--<div class="panel-heading">Title: {{book.name}}</div>-->
                 <div class="panel-body">
-                    <img ng-src="{{book.image}}" class="img-responsive center-block"s>
+                    <img ng-src="{{book.image}}" class="img-responsive center-block">
                  <br>   
                 <br>
                <p class="bookname"> {{book.name}}</p>
+               <p class="bookname">Owner: {{book.owner.username}}</p>
                 <br>
                  <button type="button" class="btn btn-info" ng-click="requestTrade(book,$index)">Trade</button>
             </div>
             </div>
-                    <p>Owner of the Book: {{book.owner.username}}</p>
+                    
                 </div>
                 <span>
                 </span>
