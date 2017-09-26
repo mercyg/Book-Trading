@@ -1,14 +1,13 @@
 # Book-Trading App
-
-This is a full stack web application where it allows user to manage their books, and trade books with other user. 
+The aim of this application to allow users to manage their books and trade book with other user.
 
 # What it Does
+It allows user to create an account and login. Once the user is loged in they will be able to view all the books that are added by the users. This allow users to trade books with others. When one gets a trade reques they can decline or accept the trade request for the book.
 
-The application allows the user to login or to create an account if they don't have any account in the system. After the user have loged in the user is view all the books that are posted by user and they can make a book trade request with other user. When the user gets the trade request the can decline or accept the trade request for the book.
 
 # User stories 
 
-* User Story: As authenticated users I can view all books posted by every user.
+* User Story: As authenticated user I can view all books posted by every user.
 * User Story: As authenticated user I can add a new book.
 * User Story: As authenticated user I can propose a trade and wait for the other user to accept the trade.
 * User Story: As authenticated user I can cancel my trade request.
