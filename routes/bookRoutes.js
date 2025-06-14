@@ -49,6 +49,25 @@ bookRoute.route("/")
         })
     })
 
+bookRoute.get("/nearby", function(req, res){
+    Book.find({})
+        .populate("owner", "username city state")
+        .exec(function(err, books){
+            if(err) {
+                return res.status(500).send(err);
+            }
+            var city = req.query.city;
+            var state = req.query.state;
+            if(city || state){
+                books = books.filter(function(b){
+                    var o = b.owner || {};
+                    return (!city || o.city === city) && (!state || o.state === state);
+                });
+            }
+            res.send(books);
+        });
+});
+
 bookRoute.route("/:bookId")
     .get(function (req, res) {
         Book.find({
@@ -89,6 +108,7 @@ bookRoute.route("/traderequest/request/:bookId")
             } else {
 
                 book.requestedBy = req.user;
+                book.tradeMethod = req.body.tradeMethod || "in_person";
                 book.save(function (err) {
                     if (err) {
                         res.status(500).send(err);
@@ -191,4 +211,4 @@ bookRoute.route("/traderequest/decline/:bookId")
     })
     // id_user:String, means the owner of the book in your case
 
-module.exports = bookRoute
+module.exports = bookRoute\n

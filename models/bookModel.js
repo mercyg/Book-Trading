@@ -17,6 +17,11 @@ var bookSchema = new Schema({
         type: Boolean,
         default: false
     },
+    tradeMethod: {
+        type: String,
+        enum: ["mail", "in_person"],
+        default: "in_person"
+    },
     author:String,
     image: String, 
     //genre: String,
