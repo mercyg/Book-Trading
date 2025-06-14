@@ -26,9 +26,13 @@ var userSchema = new Schema({
     },
     address: Number,
     books: [{
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: "Book"
     }],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }]
   
                             
 })

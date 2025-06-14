@@ -124,3 +124,11 @@ hr{
 .btn-info{
   margin-left:90px;
 }
+
+.friend-list {
+  margin-top: 20px;
+}
+.friend-list li {
+  list-style: none;
+  padding: 5px;
+}

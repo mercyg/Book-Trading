@@ -23,6 +23,7 @@ mongoose.connect(config.database, function(err){
 app.use("/api", expressJwt({secret: config.secret}));
 
 app.use("/api/books", require("./routes/bookRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 app.use("/auth", require("./routes/authRoutes"));
 
